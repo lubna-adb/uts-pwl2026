@@ -1,6 +1,5 @@
 generator client {
-  provider      = "prisma-client-js"
-  binaryTargets = ["native", "debian-openssl-3.0.x"]
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -9,19 +8,7 @@ datasource db {
 }
 
 model Mahasiswa {
-  id    Int    @id @default(autoincrement())
-  nama  String
-  nim   String
-}
-
-model Dosen {
   id   Int    @id @default(autoincrement())
   nama String
-  nip  String
-}
-
-model Matkul {
-  id   Int    @id @default(autoincrement())
-  nama String
-  kode String
+  nim  String
 }

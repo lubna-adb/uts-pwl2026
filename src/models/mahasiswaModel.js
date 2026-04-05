@@ -1,31 +1,45 @@
-let mahasiswa = [
-  { id: 1, nama: "Budi", nim: "12345" },
-];
+import { PrismaClient } from '@prisma/client';
+// PENTING: Baris ini memastikan file .env terbaca sempurna oleh Bun
+import "dotenv/config"; 
 
-// GET ALL
-export const getAll = () => mahasiswa;
+const prisma = new PrismaClient();
 
-// GET BY ID
-export const getById = (id) =>
-  mahasiswa.find((m) => m.id == id);
-
-// CREATE
-export const create = (data) => {
-  const newData = {
-    id: Date.now(),
-    ...data,
-  };
-  mahasiswa.push(newData);
+// LIST - Mengambil semua data
+export const getAll = async () => {
+  return await prisma.mahasiswa.findMany();
 };
 
-// UPDATE
-export const update = (id, data) => {
-  mahasiswa = mahasiswa.map((m) =>
-    m.id == id ? { ...m, ...data } : m
-  );
+// DETAIL - Mengambil 1 data berdasarkan ID
+export const getById = async (id) => {
+  return await prisma.mahasiswa.findUnique({
+    where: { id: parseInt(id) }
+  });
 };
 
-// DELETE
-export const remove = (id) => {
-  mahasiswa = mahasiswa.filter((m) => m.id != id);
+// CREATE - Menambah data baru
+export const create = async (data) => {
+  return await prisma.mahasiswa.create({
+    data: {
+      nama: data.nama,
+      nim: data.nim
+    }
+  });
+};
+
+// UPDATE - Mengubah data
+export const update = async (id, data) => {
+  return await prisma.mahasiswa.update({
+    where: { id: parseInt(id) },
+    data: {
+      nama: data.nama,
+      nim: data.nim
+    }
+  });
+};
+
+// DELETE - Menghapus data
+export const remove = async (id) => {
+  return await prisma.mahasiswa.delete({
+    where: { id: parseInt(id) }
+  });
 };

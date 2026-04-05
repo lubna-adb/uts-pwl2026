@@ -4,7 +4,6 @@ import * as mhs from "../controllers/mahasiswaController";
 
 const router = new Hono();
 
-// HOME
 router.get("/", home);
 
 // CRUD Mahasiswa
