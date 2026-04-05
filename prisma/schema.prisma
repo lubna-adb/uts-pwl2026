@@ -1,0 +1,27 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Mahasiswa {
+  id    Int    @id @default(autoincrement())
+  nama  String
+  nim   String
+}
+
+model Dosen {
+  id   Int    @id @default(autoincrement())
+  nama String
+  nip  String
+}
+
+model Matkul {
+  id   Int    @id @default(autoincrement())
+  nama String
+  kode String
+}

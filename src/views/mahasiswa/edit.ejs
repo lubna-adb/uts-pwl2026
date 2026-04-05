@@ -1,0 +1,10 @@
+<h2 class="text-xl font-bold mb-4">Edit Mahasiswa</h2>
+
+<form action="/mahasiswa/update/<%= mhs.id %>" method="POST">
+  <input name="nama" value="<%= mhs.nama %>" class="border p-2 w-full mb-2" />
+  <input name="nim" value="<%= mhs.nim %>" class="border p-2 w-full mb-2" />
+
+  <button class="bg-yellow-500 text-white px-4 py-2 rounded">
+    Update
+  </button>
+</form>
